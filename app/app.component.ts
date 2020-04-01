@@ -10,7 +10,7 @@ import { EmployeeService } from './employee.service';
 export class AppComponent {
   title = 'angular-rest-client';
   arr : Employee [] =[];
-
+  emp : Employee = new Employee();
   constructor(private service : EmployeeService)
   {
     service.getAllEmployees().subscribe( data => this.arr=data);
@@ -18,7 +18,8 @@ export class AppComponent {
 
   delete(employeeId : number)
   {
-    this.service.deleteEmployeeById(employeeId);
+    this.service.deleteEmployeeById(employeeId).subscribe(data=>this.emp=data);
+    this.service.getAllEmployees().subscribe( data => this.arr=data);
   }
 
 }
