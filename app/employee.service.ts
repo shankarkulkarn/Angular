@@ -24,4 +24,10 @@ export class EmployeeService {
     console.log(" Id = "+employeeId);
     return this.http.delete<Employee>("http://localhost:9090/employee/"+employeeId);
   }
+
+  addEmployee(employee : Employee ) : Observable<Employee>
+  {
+    console.log("Service : "+employee.employeeId);
+    return this.http.post<Employee>("http://localhost:9090/employee",employee);
+  }
 }
